@@ -256,4 +256,16 @@ body {
     .hero {
         padding: 4rem 1.25rem 3rem;
     }
+
+    .section-title {
+        text-align: center;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .contact-links {
+        justify-content: center;
+    }
 }
