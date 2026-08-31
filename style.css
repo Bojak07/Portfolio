@@ -247,7 +247,7 @@ body {
 }
 
 /* ============ Small screens ============ */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .nav-links {
         gap: 0.9rem;
         font-size: 0.9rem;
@@ -263,6 +263,8 @@ body {
 
     .about-text {
         text-align: center;
+        margin-inline: auto;
+        /* keeps the text box centered */
     }
 
     .contact-links {
