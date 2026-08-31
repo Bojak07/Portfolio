@@ -12,15 +12,69 @@
 </head>
 
 <body>
-
-    <!-- ============ NAV ============ -->
     <header class="site-header">
-        <h1>Jakob Ternström</h1>
-        <nav>
-            <ul>
-                <li>a href="#about">Projects</li>
+        <div class="container nav">
+            <a href="#" class="logo">Jakob Ternström</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
+    <main>
+        <section class="hero container">
+            <p class="hero-greeting">Hi, I'm</p>
+            <h1 class="hero-name">Jakob Ternström</h1>
+            <p class="hero-tagline">
+                A passionate developer building clean, responsive, and user-friendly web applications.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+            </div>
+        </section>
+        <section id="projects" class="section container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Project Title</h3>
+                    <p>A short description of what problem this project solves and what features it has.</p>
+                    <ul class="tags">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <a href="#" class="card-link" target="_blank">View Code &rarr;</a>
+                </article>
+            </div>
+        </section>
+        <section id="about" class="section container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-text">
+                <p>Tell a short story about your programming background, your interests, and what you enjoy building.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="section container">
+            <h2 class="section-title">Contact</h2>
+            <div class="about-text">
+                <p>Feel free to reach out for collaborations or opportunities!</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="btn btn-primary">Email Me</a>
+                    <a href="https://github.com/yourusername" class="btn btn-ghost" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/yourusername" class="btn btn-ghost" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span>© 2026 Jakob Ternström</span>
+            <span>Built with HTML & CSS</span>
+        </div>
+    </footer>
 
 </body>
