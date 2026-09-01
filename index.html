@@ -4,55 +4,112 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- EDIT: describe yourself in one sentence -->
-    <meta name="description" content="Personal portfolio of [Your Name] — [what you do]." />
-    <!-- EDIT: your name -->
-    <title>[Your Name] — Portfolio</title>
+    <meta name="description" content="Personal portfolio of Jakob Ternström." />
+    <title>Jakob Ternström — Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <script>
+        // Apply saved theme immediately before the DOM renders
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+    </script>
 </head>
 
 <body>
     <header class="site-header">
         <div class="container nav">
             <a href="#" class="logo">Jakob Ternström</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-actions">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+                    <!-- Moon icon (shows in light mode) -->
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <!-- Sun icon (shows in dark mode) -->
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
     <main>
         <section class="hero container">
-            <p class="hero-greeting">Hi, I'm</p>
-            <h1 class="hero-name">Jakob Ternström</h1>
-            <p class="hero-tagline">
-                A passionate developer building clean, responsive, and user-friendly web applications.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <p class="hero-greeting">I am</p>
+                    <h1 class="hero-name">Jakob Ternström</h1>
+                    <p class="hero-tagline">
+                        A driven developer with a passion for building clean, responsive, and user-friendly web
+                        applications even in stressful situations.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="images/IMG_profile.jpeg" alt="Jakob Ternström" class="profile-img" />
+                </div>
             </div>
         </section>
         <section id="projects" class="section container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="grid">
                 <article class="card">
-                    <h3>Project Title</h3>
-                    <p>A short description of what problem this project solves and what features it has.</p>
+                    <h3>Proactive</h3>
+                    <p>This high school work project showed that combining hardware & software with the help of AI can
+                        improve surveillance efficency in a low-cost way.</p>
                     <ul class="tags">
+                        <li>Vue</li>
+                        <li>Python</li>
+                        <li>TypeScript</li>
                         <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
+
                     </ul>
-                    <a href="#" class="card-link" target="_blank">View Code &rarr;</a>
+                    <a href="https://github.com/lukaspalm/ai-gymnasie" class="card-link" target="_blank">View Code
+                        &rarr;</a>
+                </article>
+                <article class="card">
+                    <h3>Arduino bluetooth RC car with ultrasonic sensor</h3>
+                    <p>This project, conducted during my high school years, revolved around constructing a functional
+                        remote-controlled car. The primary objective was to engineer a vehicle capable of remote
+                        controlled
+                        navigation, with an ultrasonic sensor to detect and circumvent obstacles. The car was
+                        controlled
+                        via Bluetooth using the RemoteXY app. </p>
+                    <ul class="tags">
+                        <li>C++</li>
+                        <li>RemoteXY</li>
+                        <li>Arduino IDE</li>
+
+                    </ul>
+                    <a href="#" class="card-link" target="_blank">View Code
+                        &rarr;</a>
                 </article>
             </div>
         </section>
         <section id="about" class="section container">
             <h2 class="section-title">About Me</h2>
             <div class="about-text">
-                <p>Tell a short story about your programming background, your interests, and what you enjoy building.
+                <p> I am a driven individual with a passion for building user-friendly apps, services & web
+                    applications.
+                    I enjoy learing new concepts even if they are hard. I can even stay calm headed & figure things out
+                    in stressful situations.
                 </p>
             </div>
         </section>
@@ -62,9 +119,10 @@
             <div class="about-text">
                 <p>Feel free to reach out for collaborations or opportunities!</p>
                 <div class="contact-links">
-                    <a href="mailto:your.email@example.com" class="btn btn-primary">Email Me</a>
-                    <a href="https://github.com/yourusername" class="btn btn-ghost" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/yourusername" class="btn btn-ghost" target="_blank">LinkedIn</a>
+                    <a href="mailto:jakob.ternstrom@elev.ga.ntig.se" class="btn btn-primary">Email Me</a>
+                    <a href="https://github.com/Bojak07" class="btn btn-ghost" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/jakob-ternström-073084414/" class="btn btn-ghost"
+                        target="_blank">LinkedIn</a>
                 </div>
             </div>
         </section>
@@ -77,4 +135,31 @@
         </div>
     </footer>
 
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        function getEffectiveTheme() {
+            const attr = document.documentElement.getAttribute('data-theme');
+            if (attr) return attr;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        function updateToggleIcon() {
+            const isDark = getEffectiveTheme() === 'dark';
+            document.querySelector('.icon-sun').style.display = isDark ? 'block' : 'none';
+            document.querySelector('.icon-moon').style.display = isDark ? 'none' : 'block';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = getEffectiveTheme();
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateToggleIcon();
+        });
+
+        // Initialize icon on page load
+        updateToggleIcon();
+    </script>
 </body>
+
+</html>

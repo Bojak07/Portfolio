@@ -12,7 +12,7 @@
 }
 
 @media (prefers-color-scheme: light) {
-    :root {
+    :root:not([data-theme="dark"]) {
         --bg: #ffffff;
         --surface: #f6f8fa;
         --border: #d0d7de;
@@ -21,6 +21,26 @@
         --accent: #0969da;
         --accent-contrast: #ffffff;
     }
+}
+
+[data-theme="light"] {
+    --bg: #ffffff;
+    --surface: #f6f8fa;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --muted: #57606a;
+    --accent: #0969da;
+    --accent-contrast: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-contrast: #0d1117;
 }
 
 /* ============ Base ============ */
@@ -35,10 +55,39 @@ html {
 }
 
 body {
-    background: var(--bg);
+    background-color: var(--bg);
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: 0 0;
+    pointer-events: none;
+    opacity: 0.75;
+    /* Masks out the center where your content sits */
+    mask-image: linear-gradient(to right,
+            black 0,
+            black calc(50% - var(--maxw) / 2),
+            transparent calc(50% - var(--maxw) / 2),
+            transparent calc(50% + var(--maxw) / 2),
+            black calc(50% + var(--maxw) / 2),
+            black 100%);
+    -webkit-mask-image: linear-gradient(to right,
+            black 0,
+            black calc(50% - var(--maxw) / 2),
+            transparent calc(50% - var(--maxw) / 2),
+            transparent calc(50% + var(--maxw) / 2),
+            black calc(50% + var(--maxw) / 2),
+            black 100%);
 }
 
 .container {
@@ -52,7 +101,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    background: color-mix(in srgb, var(--bg) 33%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
 }
@@ -86,6 +135,42 @@ body {
     color: var(--text);
 }
 
+/* ============ Nav & Theme Toggle Button ============ */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    border-radius: var(--radius);
+    padding: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 /* ============ Hero ============ */
 .hero {
     padding: 6rem 1.25rem 4rem;
@@ -113,6 +198,38 @@ body {
     gap: 0.75rem;
     margin-top: 2rem;
     flex-wrap: wrap;
+}
+
+/* ============ Hero Grid & Profile Picture ============ */
+.hero-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-image-wrapper {
+    flex-shrink: 0;
+}
+
+.profile-img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    /* or 'var(--radius)' for a rounded squircle */
+    object-fit: cover;
+    border: 3px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.03);
+    border-color: var(--accent);
 }
 
 /* ============ Buttons ============ */
@@ -232,12 +349,13 @@ body {
 
 /* ============ Footer ============ */
 .site-footer {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
     margin-top: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .site-footer .container {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -255,6 +373,26 @@ body {
 
     .hero {
         padding: 4rem 1.25rem 3rem;
+        text-align: center;
+    }
+
+    .hero-tagline {
+        margin-inline: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-grid {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .profile-img {
+        width: 160px;
+        height: 160px;
     }
 
     .section-title {
