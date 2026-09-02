@@ -444,16 +444,6 @@ a.info-item:hover {
     flex: 1;
 }
 
-.card h3 {
-    font-size: 1.05rem;
-}
-
-.card p {
-    color: var(--muted);
-    font-size: 0.95rem;
-    flex: 1;
-}
-
 .tags {
     list-style: none;
     display: flex;

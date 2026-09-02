@@ -13,15 +13,16 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <script>
-        // Apply saved theme & language immediately before the DOM renders
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-        const savedaLang = localStorage.getItem('language');
-        if (savedLang) {
-            document.documentElement.setAttribute('lang', savedLang);
-        }
+        (() => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+            const savedLang = localStorage.getItem('language');
+            if (savedLang) {
+                document.documentElement.setAttribute('lang', savedLang);
+            }
+        })();
     </script>
 </head>
 
