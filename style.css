@@ -9,6 +9,8 @@
     --accent-contrast: #0d1117;
     --radius: 10px;
     --maxw: 960px;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-heading: "Outfit", system-ui, -apple-system, sans-serif;
 }
 
 @media (prefers-color-scheme: light) {
@@ -57,10 +59,24 @@ html {
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+.logo,
+.hero-name,
+.hero-greeting,
+.section-title,
+.btn {
+    font-family: var(--font-heading);
 }
 
 body::before {
@@ -135,11 +151,40 @@ body::before {
     color: var(--text);
 }
 
-/* ============ Nav & Theme Toggle Button ============ */
+/* ============ Nav & Action Buttons (Theme / Lang) ============ */
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.85rem;
+}
+
+.lang-toggle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    border-radius: var(--radius);
+    padding: 0.35rem 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    line-height: 1;
+}
+
+.lang-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.lang-toggle svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
 }
 
 .theme-toggle {
@@ -214,11 +259,15 @@ body::before {
 
 .hero-image-wrapper {
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .profile-img {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     /* or 'var(--radius)' for a rounded squircle */
     object-fit: cover;
@@ -232,14 +281,70 @@ body::before {
     border-color: var(--accent);
 }
 
+.profile-info {
+    width: 100%;
+    max-width: 270px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    word-break: break-word;
+    text-align: left;
+}
+
+a.info-item:hover {
+    color: var(--accent);
+}
+
+.info-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: var(--accent);
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+}
+
+.info-subtext {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
 /* ============ Buttons ============ */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     border-radius: var(--radius);
     text-decoration: none;
     font-weight: 600;
     border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
 .btn-primary {
@@ -282,16 +387,61 @@ body::before {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.25rem;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
     transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .card:hover {
     transform: translateY(-3px);
     border-color: var(--accent);
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 190px;
+    background: color-mix(in srgb, var(--surface) 100%, black);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fills the container cleanly */
+    transition: transform 0.3s ease;
+}
+
+.card-img-contain {
+    object-fit: contain;
+    padding: 1.5rem;
+}
+
+.card:hover .card-img {
+    transform: scale(1.04);
+}
+
+.card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.card-body h3 {
+    font-size: 1.05rem;
+}
+
+.card-body p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    flex: 1;
 }
 
 .card h3 {
@@ -320,24 +470,72 @@ body::before {
 }
 
 .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
+    transition: gap 0.2s ease, opacity 0.2s ease;
+}
+
+.card-link .link-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 .card-link:hover {
     text-decoration: underline;
+    gap: 0.6rem;
 }
 
-/* ============ About / Contact text ============ */
+/* ============ About Section ============ */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
 .about-text {
     color: var(--muted);
-    max-width: 65ch;
+    font-size: 1rem;
+    line-height: 1.7;
 }
 
 .about-text p+p {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+}
+
+.skills-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.skills-card h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .contact-links {
@@ -358,10 +556,24 @@ body::before {
     padding-top: 1.5rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     color: var(--muted);
     font-size: 0.85rem;
+}
+
+.built-with {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.ai-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    fill: var(--accent);
 }
 
 /* ============ Small screens ============ */
@@ -399,6 +611,11 @@ body::before {
         text-align: center;
     }
 
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
     .about-text {
         text-align: center;
         margin-inline: auto;
@@ -407,5 +624,15 @@ body::before {
 
     .contact-links {
         justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-actions {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.35rem 0.45rem;
     }
 }
