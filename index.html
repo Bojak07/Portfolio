@@ -38,13 +38,24 @@
                 </ul>
                 <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language"
                     title="Byt till svenska / Switch to English">
-                    <svg class="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path
-                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                    </svg>
-                    <span id="lang-label">SV</span>
+                    <span id="lang-en" class="lang-option" aria-hidden="true">
+                        <svg class="flag-icon" viewBox="0 0 60 40" role="img" aria-label="United Kingdom flag">
+                            <rect width="60" height="40" fill="#183b75" />
+                            <path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="10" />
+                            <path d="M0 0 60 40M60 0 0 40" stroke="#c8102e" stroke-width="4" />
+                            <path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="14" />
+                            <path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="8" />
+                        </svg>
+                        <span>EN</span>
+                    </span>
+                    <span class="lang-switch-arrow" aria-hidden="true">↔</span>
+                    <span id="lang-sv" class="lang-option" aria-hidden="true">
+                        <svg class="flag-icon" viewBox="0 0 60 40" role="img" aria-label="Swedish flag">
+                            <rect width="60" height="40" fill="#006aa7" />
+                            <path d="M18 0v40M0 16h60" stroke="#fecc00" stroke-width="6" />
+                        </svg>
+                        <span>SV</span>
+                    </span>
                 </button>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
                     <!-- Moon icon (shows in light mode) -->
@@ -104,19 +115,6 @@
                             </svg>
                             <span>+46 70 123 45 67</span>
                         </a>
-
-                        <!-- Address, Postnummer & City -->
-                        <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                            <div class="info-text">
-                                <span>Gatuadress 1</span>
-                                <span class="info-subtext">123 45 Stockholm</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -324,8 +322,8 @@
                 contact_desc: "Feel free to reach out for collaborations or opportunities!",
                 contact_email_btn: "Email Me",
                 footer_built_with: "Built with HTML, CSS & AI Prompts",
-                lang_btn_label: "SV",
-                lang_btn_title: "Byt till svenska"
+                lang_btn_label: "EN / SV",
+                lang_btn_title: "Switch to Swedish"
             },
             sv: {
                 nav_about: "Om mig",
@@ -351,13 +349,14 @@
                 contact_desc: "Hör gärna av dig för samarbeten eller möjligheter!",
                 contact_email_btn: "Mejla mig",
                 footer_built_with: "Byggd med HTML, CSS & AI Prompts",
-                lang_btn_label: "EN",
+                lang_btn_label: "SV / EN",
                 lang_btn_title: "Switch to English"
             }
         };
 
         const langToggleBtn = document.getElementById('lang-toggle');
-        const langLabel = document.getElementById('lang-label');
+        const langEn = document.getElementById('lang-en');
+        const langSv = document.getElementById('lang-sv');
 
         function setLanguage(lang) {
             document.documentElement.setAttribute('lang', lang);
@@ -370,8 +369,9 @@
                 }
             });
 
-            if (langLabel) {
-                langLabel.textContent = translations[lang].lang_btn_label;
+            if (langEn && langSv) {
+                langEn.classList.toggle('is-active', lang === 'en');
+                langSv.classList.toggle('is-active', lang === 'sv');
             }
             if (langToggleBtn) {
                 langToggleBtn.setAttribute('title', translations[lang].lang_btn_title);
