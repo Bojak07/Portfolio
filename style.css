@@ -277,7 +277,7 @@ body::before {
 
 .profile-info {
     width: 100%;
-    max-width: 270px;
+    max-width: 290px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -618,6 +618,36 @@ a.info-item:hover {
 
     .lang-toggle {
         padding: 0.35rem 0.45rem;
+    }
+}
+
+@media (max-width: 455px) {
+    .nav {
+        height: auto;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .logo {
+        flex-basis: 100%;
+    }
+
+    .nav-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        row-gap: 0.65rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        margin-left: auto;
     }
 }
 
